@@ -13,7 +13,7 @@
 FROM   ubuntu:16.04
 
 # Set the Teamspeak version to download
-ENV TSV=3.0.12.3
+ENV TSV=3.0.13
 
 # Download and install everything from the repos.
 RUN    DEBIAN_FRONTEND=noninteractive \
@@ -21,10 +21,8 @@ RUN    DEBIAN_FRONTEND=noninteractive \
         apt-get -y install bzip2
 
 # Download and install TeamSpeak 3
-ADD    http://dl.4players.de/ts/releases/${TSV}/teamspeak3-server_linux_amd64-${TSV}.tar.bz2 ./
-RUN    tar jxf teamspeak3-server_linux_amd64-$TSV.tar.bz2 && \
-       mv teamspeak3-server_linux_amd64 /opt/teamspeak && \
-       rm teamspeak3-server_linux_amd64-$TSV.tar.bz2
+ADD    ./ts_releases/teamspeak3-server_linux_amd64-${TSV}.tar.bz2 ./
+RUN    mv teamspeak3-server_linux_amd64 /opt/teamspeak
 
 # Load in all of our config files.
 ADD    ./scripts/start /start
